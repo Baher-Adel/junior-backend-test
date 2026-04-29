@@ -1,4 +1,4 @@
-const unauthorizedError = (message) => { 
+const unauthorizedError = (message) => {
   const error = new Error(message);
   error.name = 'UnauthorizedError';
   throw error;
