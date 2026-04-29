@@ -27,3 +27,5 @@ const deleteProduct = async (id) => {
   if(!product) throw new Error('Product not found');
   return product;
 }
+
+module.exports = { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct };
