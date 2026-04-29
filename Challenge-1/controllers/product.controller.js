@@ -33,7 +33,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   const { id } = req.params;
-  const product = await removeProduct(id);
+  await removeProduct(id);
   res.status(204).send();
 };
 
