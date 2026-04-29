@@ -8,4 +8,14 @@ const validateRequest = (req, res, next) => {
   next();
 };
 
-module.exports = { validate };
+const errorHandler = (err, req, res, next) => {
+  if (err.name === 'ValidationError') {
+    return res.status(400).json({ errors: err.errors });
+  }
+  if (err.name === 'UnauthorizedError') {
+    return res.status(401).json({ errors: 'Unauthorized' });
+  }
+  next(err);
+};
+
+module.exports = { validateRequest, errorHandler };
