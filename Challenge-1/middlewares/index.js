@@ -1,13 +1,20 @@
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
-const { unauthorizedError, forbiddenError } = require('../utils/error.util');
+const { unauthorizedError, forbiddenError, notFoundError } = require('../utils/error.util');
+const mongoose = require('mongoose');
 
 const validateRequest = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  next();
+};
+
+const validateObjectId = (req, res, next) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) notFoundError('Not Found');
   next();
 };
 
@@ -28,10 +35,7 @@ const isAdmin = (req, res, next) => {
 };
 
 const notFound = (req, res, next) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
-  error.name = 'NotFoundError';
-  res.status(404);
-  next(error);
+  notFoundError(`Not Found - ${req.originalUrl}`);
 };
 
 const errorHandler = (err, req, res, next) => {
@@ -59,4 +63,5 @@ module.exports = {
   isAdmin,
   notFound,
   errorHandler,
+  validateObjectId,
 };

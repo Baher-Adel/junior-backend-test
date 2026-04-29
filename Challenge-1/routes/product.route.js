@@ -7,7 +7,12 @@ const {
   remove,
 } = require('../controllers/product.controller');
 const { createProductValidator } = require('../validators/product.validate');
-const { validateRequest, authenticate, isAdmin } = require('../middlewares');
+const {
+  validateRequest,
+  authenticate,
+  isAdmin,
+  validateObjectId,
+} = require('../middlewares');
 
 const router = Router();
 
@@ -20,15 +25,16 @@ router.post(
   create
 );
 router.get('/', authenticate, getAll);
-router.get('/:id', authenticate, getById);
+router.get('/:id', authenticate, validateObjectId, getById);
 router.put(
   '/:id',
   authenticate,
   isAdmin,
+  validateObjectId,
   createProductValidator,
   validateRequest,
   update
 );
-router.delete('/:id', authenticate, isAdmin, remove);
+router.delete('/:id', authenticate, validateObjectId, isAdmin, remove);
 
 module.exports = router;
