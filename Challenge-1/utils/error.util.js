@@ -10,4 +10,10 @@ const forbiddenError = (message) => {
   throw error;
 };
 
-module.exports = { unauthorizedError, forbiddenError };
+const notFoundError = (message) => {
+  const error = new Error(message);
+  error.name = 'NotFoundError';
+  throw error;
+};
+
+module.exports = { unauthorizedError, forbiddenError, notFoundError };
