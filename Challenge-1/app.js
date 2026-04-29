@@ -6,10 +6,12 @@ const productRoute = require('./routes/product.route');
 const { errorHandler, notFound } = require('./middlewares');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
+const NODE_ENV = process.env.NODE_ENV;
 
 const connectDB = async () => await mongoose.connect(MONGODB_URI);
 connectDB()
@@ -22,6 +24,10 @@ connectDB()
 
 app.use(cors());
 app.use(express.json());
+
+if(NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.use('/auth', authRoute);
 app.use('/products', productRoute);
