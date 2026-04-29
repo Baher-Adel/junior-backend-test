@@ -54,6 +54,9 @@ const errorHandler = (err, req, res, next) => {
   if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
     return res.status(401).json({ errors: 'Unauthorized' });
   }
+  if(err.name === 'SyntaxError') {
+    return res.status(400).json({ errors: 'Invalid JSON' });
+  }
   next(err);
 };
 
