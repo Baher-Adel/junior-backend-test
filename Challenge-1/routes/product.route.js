@@ -24,9 +24,9 @@ router.get('/:id', authenticate, getById);
 router.put(
   '/:id',
   authenticate,
+  isAdmin,
   createProductValidator,
   validateRequest,
-  isAdmin,
   update
 );
 router.delete('/:id', authenticate, isAdmin, remove);
