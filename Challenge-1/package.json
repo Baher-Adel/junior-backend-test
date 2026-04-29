@@ -8,7 +8,8 @@
     "dev": "nodemon app.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.+(js|json)\""
+    "format": "prettier --write \"**/*.+(js|json)\"",
+    "seed": "node scripts/seed.js"
   },
   "keywords": [],
   "author": "",
