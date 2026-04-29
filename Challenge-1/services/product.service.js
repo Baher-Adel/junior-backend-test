@@ -23,10 +23,10 @@ const updateProduct = async (id, productData) => {
   return product;
 }
 
-const deleteProduct = async (id) => {
+const removeProduct = async (id) => {
   const product = await Product.findByIdAndDelete(id);
   if(!product) notFoundError('Product not found');
   return product;
 }
 
-module.exports = { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct };
+module.exports = { createProduct, getAllProducts, getProductById, updateProduct, removeProduct };
