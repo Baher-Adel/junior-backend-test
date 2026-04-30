@@ -80,6 +80,12 @@ npm run dev
 
 You should see a MongoDB connection message and `Server listening on port <PORT>` (default **3000**).
 
+## Postman
+
+- **Import locally:** [`Fekra Junior Backend.postman_collection.json`](Fekra%20Junior%20Backend.postman_collection.json) — set collection variable **`base`** (e.g. `http://localhost:3000`).
+- **Fork in Postman:** [Job assessment — Postman collection](https://www.postman.com/shahendoshbahoshatha/workspace/job-assessment/collection/18340173-6981d531-aae3-4723-b2ea-41ec3e7754ac?action=share&source=copy-link&creator=18340173)
+- **Request/response reference** derived from that JSON: [POSTMAN_COLLECTION.md](POSTMAN_COLLECTION.md)
+
 ## API overview
 
 Base URL: `http://localhost:<PORT>` (default `http://localhost:3000`).
